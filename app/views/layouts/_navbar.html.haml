@@ -1,0 +1,46 @@
+/ Fixed navbar
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %p.navbar-brand
+        = link_to "CafeUK", root_path
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li.active
+          = link_to "Home", page_path(:home)
+        %li
+          = link_to "About", page_path(:about)
+        %li
+          = link_to "Features", page_path(:features)
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Products
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to "Orders", orders_path
+            %li
+              = link_to "Drinks", drinks_path
+            %li
+              = link_to "Cakes", cakes_path
+            %li.divider{:role => "separator"}
+            %li.dropdown-header Services
+            %li
+              = link_to "Map", locations_path
+            %li
+              = link_to "Members", users_path
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            = "Signed in as #{current_user.email}"
+            = link_to "Logout", destroy_user_session_path, :method => :delete
+        - else
+          %li
+            = link_to "Register", new_user_registration_path
+          %li
+            = link_to "Login", new_user_session_path

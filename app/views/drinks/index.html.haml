@@ -1,0 +1,21 @@
+%h1 DRINKS
+= link_to "Add new drink", new_drink_path
+
+%hr
+
+.row
+	.col-md-3
+		Drink Name
+	.col-md-3
+		Drink Price
+		Action
+- @drinks.each do |drink|
+	.row{:id => "drink_#{drink.id}"}
+		.col-md-3
+			= drink.name
+		.col-md-3
+			= number_to_currency(drink.price, :unit => "P")
+		.col-md-6
+			=link_to "Edit", edit_drink_path(drink)
+			=link_to "Show", drink
+			=link_to "Delete", drink, :method => :delete, :data => {confirm: "Are you sure?"}

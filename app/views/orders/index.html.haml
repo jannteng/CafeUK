@@ -1,0 +1,19 @@
+%h1 Orders
+= link_to "Add new order", new_order_path
+
+%hr
+
+.row
+	.col-md-6
+		Order Name
+	.col-md-6
+		Action
+- @orders.each do |order|
+	.row{:id => "order_#{order.id}"}
+		.col-md-6
+			= order.order
+		.col-md-6
+			=link_to "Edit", edit_order_path(order)
+			=link_to "Show", order
+			=link_to "Delete", order, :method => :delete, :data => {confirm: "Are you sure?"}
+			

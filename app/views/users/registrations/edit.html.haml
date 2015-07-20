@@ -1,0 +1,21 @@
+%h2
+  Edit #{resource_name.to_s.humanize}
+- content_for :resource, "Settings for #{:first_name}"
+%ul.nav.nav-tabs{:role => "tablist"}
+  %li.active
+    %a{"data-toggle" => "tab", :href => "#profile", :role => "tab"}
+      Profile
+  %li
+    %a{"data-toggle" => "tab", :href => "#password", :role => "tab"}
+      Password
+  %li
+    %a{"data-toggle" => "tab", :href => "#account", :role => "tab"}
+      Account
+.tab-content
+  #profile.tab-pane.active.col-md-12
+    = render :partial => "edit_profile"
+  #password.tab-pane.col-md-12
+    = render :partial => "edit_password"
+  #account.tab-pane.col-md-12
+    = render :partial => "edit_account"
+= link_to "Back", :back

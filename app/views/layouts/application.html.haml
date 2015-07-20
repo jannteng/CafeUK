@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Cafe
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    = render :partial => 'layouts/navbar'
+    .container{:style => "margin-top:5em"}
+      - flash.each do |name, message|
+        = content_tag :div, message, :id => "flash_#{name}"
+      = yield

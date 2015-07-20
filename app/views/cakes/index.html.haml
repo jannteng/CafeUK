@@ -1,0 +1,22 @@
+%h1 CAKES
+= link_to "Add new cake", new_cake_path
+
+%hr
+
+.row
+	.col-md-3
+		Cake Name
+	.col-md-3
+		Cake Price
+	.col-md-6
+		Action
+- @cakes.each do |cake|
+	.row{:id => "cake_#{cake.id}"}
+		.col-md-3
+			= cake.name
+		.col-md-3
+			= number_to_currency(cake.price, :unit => "P")
+		.col-md-6
+			=link_to "Edit", edit_cake_path(cake)
+			=link_to "Show", cake
+			=link_to "Delete", cake, :method => :delete, :data => {confirm: "Are you sure?"}
